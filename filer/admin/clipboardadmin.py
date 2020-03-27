@@ -23,7 +23,7 @@ NO_PERMISSIONS_FOR_FOLDER = (
 )
 
 
-#Image = load_model(filer_settings.FILER_IMAGE_MODEL)
+Image = filer_settings.FILER_IMAGE_MODEL
 
 
 # ModelAdmins
@@ -150,16 +150,15 @@ def ajax_upload(request, folder_id=None):
                 'label': str(file_obj),
                 'file_id': file_obj.pk,
             }
-            # prepare preview thumbnail
-            #if type(file_obj) == Image:
-            #    thumbnail_180_options = {
-            #        'size': (180, 180),
-            #        'crop': True,
-            #        'upscale': True,
-            #    }
-            #    thumbnail_180 = file_obj.file.get_thumbnail(
-            #        thumbnail_180_options)
-                data['thumbnail_180'] = file_obj.url #thumbnail_180.url
+            if type(file_obj) == Image:
+                thumbnail_180_options = {
+                    'size': (180, 180),
+                    'crop': True,
+                    'upscale': True,
+                }
+                thumbnail_180 = file_obj.file.get_thumbnail(
+                    thumbnail_180_options)
+                data['thumbnail_180'] = thumbnail_180.url
                 data['original_image'] = file_obj.url
             return JsonResponse(data)
         else:

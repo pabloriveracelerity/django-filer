@@ -13,12 +13,8 @@ from .utils.recursive_dictionary import RecursiveDictionaryWithExcludes
 
 logger = logging.getLogger(__name__)
 
-# FILER_IMAGE_MODEL setting is used to swap Image model.
-# If such global setting does not exist, it will be created at this point (with default model name).
-# This is needed especially when using this setting in migrations.
-if not hasattr(settings, 'FILER_IMAGE_MODEL'):
-    setattr(settings, 'FILER_IMAGE_MODEL', 'filer.Image')
-FILER_IMAGE_MODEL = settings.FILER_IMAGE_MODEL
+# Don't need to make image model swapable in this context
+FILER_IMAGE_MODEL = 'filer.Image'
 
 FILER_DEBUG = getattr(settings, 'FILER_DEBUG', False)  # When True makes
 FILER_SUBJECT_LOCATION_IMAGE_DEBUG = getattr(settings, 'FILER_SUBJECT_LOCATION_IMAGE_DEBUG', False)

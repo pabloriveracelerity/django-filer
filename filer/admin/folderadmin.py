@@ -60,7 +60,7 @@ from .tools import (
     userperms_for_request,
 )
 
-Image = load_model(FILER_IMAGE_MODEL)
+Image = FILER_IMAGE_MODEL
 
 
 class AddFolderPopupForm(forms.ModelForm):

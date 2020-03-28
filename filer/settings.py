@@ -10,11 +10,12 @@ from django.core.files.storage import get_storage_class
 
 from .utils.loader import load_object
 from .utils.recursive_dictionary import RecursiveDictionaryWithExcludes
+from .models import imagemodels
 
 logger = logging.getLogger(__name__)
 
 # Don't need to make image model swapable in this context
-FILER_IMAGE_MODEL = 'filer.Image'
+FILER_IMAGE_MODEL = imagemodels.Image
 
 FILER_DEBUG = getattr(settings, 'FILER_DEBUG', False)  # When True makes
 FILER_SUBJECT_LOCATION_IMAGE_DEBUG = getattr(settings, 'FILER_SUBJECT_LOCATION_IMAGE_DEBUG', False)
